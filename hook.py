@@ -17,6 +17,13 @@ def sendHook(x):
     owner = x['owner']
     id = x['id']
     link = f'https://www.launchmynft.io/collections/{owner}/{id}'
+    
+    try:
+      description = x['description']
+    except KeyError:
+      description = '-'
+    
+      
     data = {
         "username" : "Degen"
     }
@@ -37,7 +44,7 @@ def sendHook(x):
         },
         {
           "name": "Description:",
-          "value": x['description']
+          "value": description
         },
         {
           "name": "Total mints:",
