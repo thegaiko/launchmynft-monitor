@@ -2,6 +2,12 @@ import requests
 
 url = "https://discord.com/api/webhooks/1000115989880516808/n0wPo2dPqSC9sG0opW2yxu4_qwX3ObCHYWA9ngQ5f9ifHu3x1PnB1Y26aeKWM9eyOtso"
 
+def ifNull(x):
+  try:
+    return x
+  except KeyError:
+    return '-'
+
 def timeConvert(x):
     year = int(f'{x[0]}{x[1]}{x[2]}{x[3]}')
     month = int(f'{x[5]}{x[6]}')
@@ -16,14 +22,7 @@ def sendHook(x):
     totalMints = x['totalMints']
     owner = x['owner']
     id = x['id']
-    link = f'https://www.launchmynft.io/collections/{owner}/{id}'
-    
-    try:
-      description = x['description']
-    except KeyError:
-      description = '-'
-    
-      
+    link = f'https://www.launchmynft.io/collections/{owner}/{id}'    
     data = {
         "username" : "Degen"
     }
@@ -34,17 +33,17 @@ def sendHook(x):
       "fields": [
         {
           "name": "Collection name:",
-          "value": x['collectionName'],
+          "value": ifNull(x['collectionName']),
           "inline": True
         },
         {
           "name": "Type:",
-          "value": x['type'],
+          "value": ifNull(x['type']),
           "inline": True
         },
         {
           "name": "Description:",
-          "value": description
+          "value": ifNull(x['description'])
         },
         {
           "name": "Total mints:",
@@ -62,7 +61,7 @@ def sendHook(x):
         "icon_url": "https://sun9-58.userapi.com/impf/jgOkfU_yUf-HUS1_zd73z61ZpJZi1l6l6PxRjA/JtNJ-75JJtY.jpg?size=1624x1624&quality=95&sign=c4820a07df07b1312763693a050d833d&type=album"
       },
       "image": {
-        "url": x['collectionBannerUrl']
+        "url": ifNull(x['collectionBannerUrl'])
       }
     }
     ]
