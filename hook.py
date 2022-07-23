@@ -40,11 +40,6 @@ def sendHook(x):
           "value": x['description']
         },
         {
-          "name": "Launch date:",
-          "value": timeConvert(x['launchDate']),
-          "inline": True
-        },
-        {
           "name": "Total mints:",
           "value": f'{totalMints}/{maxSupply}',
           "inline": True

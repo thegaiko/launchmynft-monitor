@@ -3,7 +3,7 @@ from req import getLastCollection
 from hook import sendHook
 
 lastCollection = getLastCollection()
-lastCollectionId = lastCollection['id']
+lastCollectionId = [lastCollection['id']]
 
 sendHook(lastCollection)
 
@@ -11,8 +11,8 @@ while True:
     newCollection = getLastCollection()
     newCollectionId = newCollection['id']
     
-    if newCollectionId != lastCollectionId:
+    if newCollectionId not in lastCollectionId:
         sendHook(newCollection)
         lastCollection = newCollection
-        lastCollectionId = newCollectionId
-    time.sleep(120)
+        lastCollectionId.append(newCollectionId)
+    time.sleep(30)

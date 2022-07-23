@@ -21,7 +21,7 @@ def getLastCollection():
     ],
     "limit": 200,
     "sort": [
-        "fractionMinted:desc"
+        "deployed:desc"
     ],
     "q": ""
     })
