@@ -1,6 +1,6 @@
 import requests
 
-url = "https://discord.com/api/webhooks/1000115989880516808/n0wPo2dPqSC9sG0opW2yxu4_qwX3ObCHYWA9ngQ5f9ifHu3x1PnB1Y26aeKWM9eyOtso"
+url = "https://discord.com/api/webhooks/1020759277532627056/1eNo9K7OMaFXVcemgWylx6Quh1YLMjV3kX4azz9YgVMl2tQnwXWy28XRzL2O5ItA4Wrd"
 
 def ifNull(x):
   try:
@@ -22,28 +22,32 @@ def sendHook(x):
     totalMints = x['totalMints']
     owner = x['owner']
     id = x['id']
-    link = f'https://www.launchmynft.io/collections/{owner}/{id}'    
+    link = f'https://www.launchmynft.io/collections/{owner}/{id}'   
+    
+    collectionName = ifNull(x['collectionName'])
+    type = ifNull(x['type'])
+    description = ifNull(x['description'])
     data = {
-        "username" : "Degen"
+        "username" : "LMNFT"
     }
     data["embeds"] = [
         {
       "title": "Launchmynft new collection",
-      "color": 12910592,
+      "color": 16087355,
       "fields": [
         {
           "name": "Collection name:",
-          "value": ifNull(x['collectionName']),
+          "value": collectionName,
           "inline": True
         },
         {
           "name": "Type:",
-          "value": ifNull(x['type']),
+          "value": type,
           "inline": True
         },
         {
           "name": "Description:",
-          "value": ifNull(x['description'])
+          "value": description
         },
         {
           "name": "Total mints:",
@@ -57,8 +61,7 @@ def sendHook(x):
         },
       ],
       "footer": {
-        "text": "ARBIT",
-        "icon_url": "https://sun9-58.userapi.com/impf/jgOkfU_yUf-HUS1_zd73z61ZpJZi1l6l6PxRjA/JtNJ-75JJtY.jpg?size=1624x1624&quality=95&sign=c4820a07df07b1312763693a050d833d&type=album"
+        "text": "gaiko (@metagaiko)"
       },
       "image": {
         "url": ifNull(x['collectionBannerUrl'])

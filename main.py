@@ -1,3 +1,4 @@
+from pprint import pprint
 import time
 from req import getLastCollection
 from hook import sendHook
